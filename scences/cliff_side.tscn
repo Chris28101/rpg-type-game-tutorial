@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://8cb24li0ubsf"]
+[gd_scene load_steps=12 format=3 uid="uid://8cb24li0ubsf"]
 
 [ext_resource type="Script" path="res://scripts/cliff_side.gd" id="1_hq7g2"]
 [ext_resource type="Texture2D" uid="uid://0qcydwwl3yv2" path="res://sprites/tilesets/plains.png" id="1_lgiye"]
 [ext_resource type="Texture2D" uid="uid://bsdtg5oqc0raa" path="res://sprites/objects/objects.png" id="2_1wsvf"]
 [ext_resource type="Texture2D" uid="uid://0hpc1q43kch2" path="res://sprites/tilesets/grass.png" id="3_vgnfi"]
 [ext_resource type="PackedScene" uid="uid://k3f3df4v421u" path="res://scences/player.tscn" id="4_bkhdb"]
+[ext_resource type="PackedScene" uid="uid://b54lpvnbxik2n" path="res://scences/chest.tscn" id="6_h7enu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7g74j"]
 texture = ExtResource("1_lgiye")
@@ -131,6 +132,8 @@ position = Vector2(89, 80)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clifeside_exit"]
 position = Vector2(-1, 76)
 shape = SubResource("RectangleShape2D_i4k8j")
+
+[node name="chest" parent="." instance=ExtResource("6_h7enu")]
 
 [connection signal="body_entered" from="clifeside_exit" to="." method="_on_clifeside_exit_body_entered"]
 [connection signal="body_exited" from="clifeside_exit" to="." method="_on_clifeside_exit_body_exited"]

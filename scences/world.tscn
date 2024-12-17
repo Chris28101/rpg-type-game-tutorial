@@ -125,7 +125,7 @@ z_index = 1
 position = Vector2(68, 137)
 
 [node name="Enemy" parent="." instance=ExtResource("5_48os3")]
-position = Vector2(201, 101)
+position = Vector2(231, 91)
 
 [node name="collisons" type="StaticBody2D" parent="."]
 
@@ -138,5 +138,9 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cliff_side_transition_point"]
 position = Vector2(222, -18)
 shape = SubResource("RectangleShape2D_6k48h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(205, 97)
+zoom = Vector2(4, 4)
 
 [connection signal="body_entered" from="cliff_side_transition_point" to="." method="_on_cliff_side_transition_point_body_entered"]

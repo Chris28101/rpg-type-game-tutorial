@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
-var health = 100
+var health = 100 
 var player_alive = true
 
 var attack_ip = false #ip stands for in progress
@@ -18,12 +18,13 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	current_camera()
+	update_health()
 	
 	if health <= 0:       # respawn screen if u want
 		player_alive = false
 		health = 0 
 		print("player has been killed...")
-		#self.queue_free()
+		self.queue_free()
 
 	
 
@@ -142,16 +143,8 @@ func _on_deal_attack_timer_timeout() -> void:
 	$deal_attack_timer.stop()
 	Global.player_current_attack = false
 	attack_ip = false
-
-
-
-
-
-
-
-
-
-
+	
+	
 func current_camera():
 	if Global.current_scene == "world":
 		$World_camera.enabled = true
@@ -160,3 +153,22 @@ func current_camera():
 	elif Global.current_scene == "cliff_side":
 		$World_camera.enabled = false
 		$cliffside_camera.enabled = true
+
+
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+	
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+	
+
+func _on_regin_timer_timeout() -> void:
+	if health <100:
+		health = health + 20
+		if health > 100:
+			health = 100
+	if health <= 0:
+		health = 0

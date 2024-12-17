@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b54lpvnbxik2n"]
+
+[ext_resource type="Texture2D" uid="uid://4k3r7uwy0ftv" path="res://sprites/objects/chest_01.png" id="1_ibu16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm0fk"]
+atlas = ExtResource("1_ibu16")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uuef4"]
+atlas = ExtResource("1_ibu16")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qplm5"]
+atlas = ExtResource("1_ibu16")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48xem"]
+atlas = ExtResource("1_ibu16")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gsojf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm0fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uuef4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qplm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48xem")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="chest" type="Node"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gsojf")
+frame_progress = 0.128965
