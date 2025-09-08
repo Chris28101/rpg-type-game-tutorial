@@ -438,8 +438,9 @@ drag_vertical_enabled = true
 texture_filter = 3
 position = Vector2(-1, 5)
 sprite_frames = SubResource("SpriteFrames_iphv6")
-animation = &"side_attack"
-frame_progress = 0.803149
+animation = &"side_idle"
+frame = 1
+frame_progress = 0.723973
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

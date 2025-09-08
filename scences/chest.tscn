@@ -2,44 +2,43 @@
 
 [ext_resource type="Texture2D" uid="uid://4k3r7uwy0ftv" path="res://sprites/objects/chest_01.png" id="1_ibu16"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bm0fk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt8ur"]
 atlas = ExtResource("1_ibu16")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uuef4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m30rb"]
 atlas = ExtResource("1_ibu16")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qplm5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_en7q0"]
 atlas = ExtResource("1_ibu16")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_48xem"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_b338l"]
 atlas = ExtResource("1_ibu16")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gsojf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6br8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bm0fk")
+"texture": SubResource("AtlasTexture_lt8ur")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uuef4")
+"texture": SubResource("AtlasTexture_m30rb")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qplm5")
+"texture": SubResource("AtlasTexture_en7q0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_48xem")
+"texture": SubResource("AtlasTexture_b338l")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="chest" type="Node"]
+[node name="Node2D" type="Node2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_gsojf")
-frame_progress = 0.128965
+sprite_frames = SubResource("SpriteFrames_g6br8")

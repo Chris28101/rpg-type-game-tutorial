@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
+var npc_attack_cooldown = true
+var npc_inattack_range = false
 var health = 100 
 var player_alive = true
 
@@ -9,7 +11,7 @@ var attack_ip = false #ip stands for in progress
 
 
 const speed = 75
-var current_dir = "none"
+@export var current_dir = "idle"
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -19,7 +21,8 @@ func _physics_process(delta):
 	attack()
 	current_camera()
 	update_health()
-	
+	NPC_attack()
+	NPC_anim()
 	if health <= 0:       # respawn screen if u want
 		player_alive = false
 		health = 0 
@@ -98,12 +101,17 @@ func player():
 func _on_player_hitbox_body_entered(body):
 	if body.name == "Enemy":
 		enemy_inattack_range = true
+	if body.name == "NPC":
+		npc_inattack_range = true
 
 
 func _on_player_hitbox_body_exited(body):
 	if body.name == "Enemy":
 		enemy_inattack_range = false
+	if body.name == "NPC":
+		npc_inattack_range = false
 		
+
 
 func enemy_attack():
 	if enemy_inattack_range and enemy_attack_cooldown == true:
@@ -111,10 +119,29 @@ func enemy_attack():
 		enemy_attack_cooldown = false
 		$attack_cooldown.start()
 		print(health)
+func NPC_attack():
+	if npc_inattack_range and npc_attack_cooldown == true:
+		#health = health - 20
+		npc_attack_cooldown = false
+		$attack_cooldown.start()
+		print(health)
+		
+func NPC_anim():
+	if current_dir == "left":
+		$AnimatedSprite2D.play("side_attack")
+		$AnimatedSprite2D.flip_h = true
+	if current_dir == "right":
+		$AnimatedSprite2D.play("side_attack")
+		$AnimatedSprite2D.flip_h = false
+	if current_dir == "up":
+		$AnimatedSprite2D.play("back_attack")
+	if current_dir == "down":
+		$AnimatedSprite2D.play("front_attack")
+
 
 func _on_attack_cooldown_timeout() -> void:
 	enemy_attack_cooldown = true
-
+	npc_attack_cooldown = true
 
 func attack():
 	var dir = current_dir
@@ -172,3 +199,4 @@ func _on_regin_timer_timeout() -> void:
 			health = 100
 	if health <= 0:
 		health = 0
+#fix player anim and npc 
