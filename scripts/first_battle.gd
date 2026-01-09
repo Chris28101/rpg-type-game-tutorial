@@ -16,7 +16,9 @@ func _on_clifeside_exit_body_entered(body):
 		Global.transistion_scene = true
 
 
-
+func _on_clifeside_exit_body_exited(body):
+	if body.name == "player":
+		Global.transistion_scene = false
 		
 func change_scenes():
 	if Global.transistion_scene == true:

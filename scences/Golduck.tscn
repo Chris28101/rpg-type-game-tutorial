@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc3tu2omc7jcg"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_l5csk"]
+[ext_resource type="Texture2D" uid="uid://bf7bnshk3npef" path="res://sprites/characters/Pokemon/Poke_sprites.png" id="2_xwftn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggsqo"]
+atlas = ExtResource("2_xwftn")
+region = Rect2(312, 177, 39, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rph6t"]
+atlas = ExtResource("2_xwftn")
+region = Rect2(312, 0, 39, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lipi"]
+atlas = ExtResource("2_xwftn")
+region = Rect2(312, 59, 39, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xmtti"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggsqo")
+}],
+"loop": true,
+"name": &"Back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rph6t")
+}],
+"loop": true,
+"name": &"Front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lipi")
+}],
+"loop": true,
+"name": &"Side",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5uqig"]
+radius = 9.0
+height = 29.2611
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_na32y"]
+radius = 16.0312
+
+[node name="Golduck" type="CharacterBody2D"]
+position = Vector2(-2, 1)
+script = ExtResource("1_l5csk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 1)
+scale = Vector2(0.724359, 0.560615)
+sprite_frames = SubResource("SpriteFrames_xmtti")
+animation = &"Front"
+offset = Vector2(0, -6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9, -6)
+rotation = 1.5708
+scale = Vector2(1, 0.6835)
+shape = SubResource("CapsuleShape2D_5uqig")
+
+[node name="detection_area" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(7, 1)
+shape = SubResource("CircleShape2D_na32y")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -72.0
+offset_top = -41.0
+offset_right = 120.0
+offset_bottom = -18.0
+theme_override_font_sizes/font_size = 10
+text = "Golduck 						LV1"
+
+[node name="ProgressBar" type="ProgressBar" parent="Label"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 76.0
+offset_top = 2.0
+offset_right = 149.0
+offset_bottom = 12.0
+tooltip_text = "Hp:
+"
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+max_value = 80.0
+show_percentage = false
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

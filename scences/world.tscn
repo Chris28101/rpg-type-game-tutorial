@@ -1,13 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c5s2r8e0vymmt"]
+[gd_scene load_steps=12 format=3 uid="uid://c5s2r8e0vymmt"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_7svhd"]
 [ext_resource type="PackedScene" uid="uid://k3f3df4v421u" path="res://scences/player.tscn" id="1_358pb"]
 [ext_resource type="Texture2D" uid="uid://0qcydwwl3yv2" path="res://sprites/tilesets/plains.png" id="1_pdb8w"]
 [ext_resource type="Texture2D" uid="uid://0hpc1q43kch2" path="res://sprites/tilesets/grass.png" id="2_y7p7f"]
 [ext_resource type="Texture2D" uid="uid://bsdtg5oqc0raa" path="res://sprites/objects/objects.png" id="3_tpxdx"]
-[ext_resource type="PackedScene" uid="uid://bc3tu2omc7jcg" path="res://scences/enemy.tscn" id="5_48os3"]
-[ext_resource type="PackedScene" uid="uid://bgt31qthkw4yk" path="res://scences/npc.tscn" id="7_s7w23"]
-[ext_resource type="AudioStream" uid="uid://ltydylkq10en" path="res://Naruto_-_Ending_1_Wind_128kbps.mp3" id="8_u0mbc"]
+[ext_resource type="PackedScene" uid="uid://bc3tu2omc7jcg" path="res://scences/Golduck.tscn" id="5_48os3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fny7p"]
 texture = ExtResource("1_pdb8w")
@@ -107,6 +105,13 @@ size = Vector2(54, 36)
 y_sort_enabled = true
 script = ExtResource("1_7svhd")
 
+[node name="player" parent="." instance=ExtResource("1_358pb")]
+z_index = 1
+position = Vector2(-16, 16)
+
+[node name="Pokemon" parent="." instance=ExtResource("5_48os3")]
+position = Vector2(225, 104)
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 scale = Vector2(1.00064, 1)
@@ -122,13 +127,6 @@ layer_2/y_sort_enabled = true
 layer_2/z_index = 2
 layer_2/tile_data = PackedInt32Array(23, 655362, 7, 2, 655362, 7, 262150, 655362, 7, 393232, 655362, 7, 10, 2, 5, 327701, 2, 5, 589825, 2, 5, 393221, 2, 0, 524300, 524290, 6, 196624, 393218, 7, 655384, 393218, 7, 589835, 327682, 0, 65548, 2, 1, 655363, 2, 1, 524299, 2, 0, 327704, 2, 0, 262152, 524290, 6, 327680, 524290, 6)
 
-[node name="player" parent="." instance=ExtResource("1_358pb")]
-z_index = 1
-position = Vector2(68, 137)
-
-[node name="Enemy" parent="." instance=ExtResource("5_48os3")]
-position = Vector2(80, 47)
-
 [node name="collisons" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="collisons"]
@@ -140,15 +138,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cliff_side_transition_point"]
 position = Vector2(222, -18)
 shape = SubResource("RectangleShape2D_6k48h")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(205, 97)
-zoom = Vector2(4, 4)
-
-[node name="NPC" parent="." instance=ExtResource("7_s7w23")]
-position = Vector2(203, 92)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_u0mbc")
 
 [connection signal="body_entered" from="cliff_side_transition_point" to="." method="_on_cliff_side_transition_point_body_entered"]
